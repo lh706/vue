@@ -1,0 +1,3 @@
+vue各个版本区别 runtime compiler等
+sharedPropertyDefinition实验与原理
+建立debuger仓库, 一步一步实现
