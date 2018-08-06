@@ -6,36 +6,27 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script src="./dist/vue.js"></script>
+  <!-- <script src="./src1/bundle.js"></script> -->
 </head>
 <body>
   
 </body>
 <script>
-var noop = () => {}
+
+  a = class {
+    constructor (name) {
+      this.name = name
+    }
+    fn () {
+      console.info(this.name, this.constructor.staticName)
+    }
+  }
+  a.staticName = 'a1'
+
+  b = Object.create(a)
+  b.staticName = 'b1'
 
 
-var sharedPropertyDefinition = {
-  enumerable: true,
-  configurable: true,
-  get: noop,
-  set: noop
-};
-
-function proxy (target, sourceKey, key) {
-  sharedPropertyDefinition.get = function proxyGetter () {
-    return this[sourceKey][key]
-  };
-  sharedPropertyDefinition.set = function proxySetter (val) {
-    this[sourceKey][key] = val;
-  };
-  Object.defineProperty(target, key, sharedPropertyDefinition);
-}
-
-vm = {}
-vm._data = {
-  a: 1
-}
-proxy(vm, '_data', 'a')
 
 </script>
 </html>

@@ -33,11 +33,12 @@ export function initMixin (Vue: Class<Component>) {
       // optimize internal component instantiation
       // since dynamic options merging is pretty slow, and none of the
       // internal component options needs special treatment.
+      // 因为合并动态options很慢, 所以对于内部组件做特殊处理
       initInternalComponent(vm, options)
     } else {
       vm.$options = mergeOptions(
-        resolveConstructorOptions(vm.constructor),
-        options || {},
+        resolveConstructorOptions(vm.constructor), // 构造函数的options
+        options || {}, // 传入的options
         vm
       )
     }
@@ -89,9 +90,10 @@ export function initInternalComponent (vm: Component, options: InternalComponent
     opts.staticRenderFns = options.staticRenderFns
   }
 }
-
+// 返回构造函数上的options, (先就只管当前构造函数是Vue而不是其子类)
 export function resolveConstructorOptions (Ctor: Class<Component>) {
   let options = Ctor.options
+  // 如果是子类的处理
   if (Ctor.super) {
     const superOptions = resolveConstructorOptions(Ctor.super)
     const cachedSuperOptions = Ctor.superOptions

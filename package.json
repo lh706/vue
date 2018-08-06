@@ -41,11 +41,7 @@
     "release": "bash scripts/release.sh",
     "release:weex": "bash scripts/release-weex.sh",
     "release:note": "node scripts/gen-release-note.js",
-    "commit": "git-cz"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "node scripts/verify-commit-msg.js"
+    "demo": "rollup -w -c scripts/demo.js"
   },
   "lint-staged": {
     "*.js": [
@@ -141,10 +137,5 @@
     "weex-js-runtime": "^0.23.6",
     "weex-styler": "^0.3.0",
     "yorkie": "^1.0.1"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
