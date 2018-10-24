@@ -9,24 +9,25 @@
   <!-- <script src="./src1/bundle.js"></script> -->
 </head>
 <body>
-  
+  <div id="app">
+    <div>{{a}}</div>
+  </div>
 </body>
 <script>
-
-  a = class {
-    constructor (name) {
-      this.name = name
+  let a = Vue.extend({
+    el: '#app',
+    beforeCreate() {
+      console.info(1)
+    },
+    data () {
+      return {
+        a: 1
+      }
     }
-    fn () {
-      console.info(this.name, this.constructor.staticName)
-    }
-  }
-  a.staticName = 'a1'
-
-  b = Object.create(a)
-  b.staticName = 'b1'
-
-
-
+  })
+let app = new Vue({
+  extends: a
+})
+console.info(app)
 </script>
 </html>
